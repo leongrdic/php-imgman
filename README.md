@@ -1,43 +1,57 @@
 # imgman
 
-This library uses GD and EXIF (optional) PHP extensions so make sure you have them
+This library uses GD and EXIF (optional) PHP extensions so make sure you have them installed.
 
-Install:
+It also uses the latest PHP 8.1 features and backwards compatibility isn't yet supported.
+
+## Install:
 ```
 composer require leongrdic/imgman
 ```
 
-
-Example usages:
-```
+```php
 use Le\ImgMan\{ImgMan, ImageFormat};
+```
 
-$img = new ImgMan()
+## Supported formats
+### Input
+- any image format supported by php-gd
+
+Input methods: `fromDataUrl()`, `fromString()`, `fromFile()`
+
+### Output
+
+Call the `output()` method with the wanted output format:
+- `ImageFormat::jpeg`
+- `ImageFormat::png`
+- `ImageFormat::webp` (make sure your php-gd is configured to work with webp)
+
+After that use: `toDataUrl()`, `toString()`, `toFile()`
+
+## Example usages
+```php
+$rawImageBytes = new ImgMan()
     ->fromDataUrl($dataUrlFromJS)
     ->cacheExif()
     ->downscale(2048)
-    ->rotateFromExif()
-    ->output(ImageFormat::jpeg, 75)
+    ->rotateFromExif() // rotating after downscaling should use less memory and be a bit faster
+    ->output(ImageFormat::jpeg, quality: 75)
     ->toString();
 ```
 
-```
-use Le\ImgMan\{ImgMan, ImageFormat};
-
+```php
 new ImgMan()
     ->fromFile('example.png')
-    ->downscale(1024)
-    ->output(ImageFormat::webp, 80)
-    ->toFile('example.webp');
+    ->downscale(1920, 1080)
+    ->output(ImageFormat::png)
+    ->toFile(); // use input filename (replace original file)
 ```
 
-```
-use Le\ImgMan\{ImgMan, ImageFormat};
-
-new ImgMan()
+```php
+$dataUrl = new ImgMan()
     ->fromString($rawImageBytes)
-    ->output(ImageFormat::png, 80)
-    ->toFile('example.png');
+    ->output(ImageFormat::webp, quality: 80)
+    ->toDataUrl();
 ```
 
 # Notice

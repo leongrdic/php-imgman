@@ -1,6 +1,5 @@
 {
   "name": "leongrdic/imgman",
-  "version": "1.0.0",
   "description": "simple php image manipulator that can downscale and compress e.g. thumbnails and profile pictures",
   "license": "MIT",
   "homepage": "https://github.com/leongrdic/php-imgman",
@@ -11,6 +10,7 @@
     }
   ],
   "require": {
+    "php": "^8.1",
     "ext-gd": "*",
     "ext-exif": "*"
   },

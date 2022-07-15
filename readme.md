@@ -10,7 +10,7 @@ composer require leongrdic/imgman
 ```
 
 ```php
-use Le\ImgMan\{ImgMan, ImageFormat};
+use \Le\ImgMan\{ImgMan, ImageFormat};
 ```
 
 ## Supported formats

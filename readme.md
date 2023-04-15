@@ -30,7 +30,7 @@ After that use: `toDataUrl()`, `toString()`, `toFile()`
 
 ## Example usages
 ```php
-$rawImageBytes = new ImgMan()
+$rawImageBytes = (new ImgMan)
     ->fromDataUrl($dataUrlFromJS)
     ->cacheExif()
     ->downscale(2048)
@@ -40,7 +40,7 @@ $rawImageBytes = new ImgMan()
 ```
 
 ```php
-new ImgMan()
+(new ImgMan)
     ->fromFile('example.png')
     ->downscale(1920, 1080)
     ->output(ImageFormat::png)
@@ -48,7 +48,7 @@ new ImgMan()
 ```
 
 ```php
-$dataUrl = new ImgMan()
+$dataUrl = (new ImgMan)
     ->fromString($rawImageBytes)
     ->output(ImageFormat::webp, quality: 80)
     ->toDataUrl();
